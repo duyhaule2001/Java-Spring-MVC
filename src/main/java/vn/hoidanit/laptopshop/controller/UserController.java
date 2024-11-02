@@ -22,6 +22,11 @@ public class UserController {
         model.addAttribute("leduyhau", "form controller");
         return "leduyhau";
     }
+
+    @RequestMapping("/admin/user")
+    public String getUserPage(Model model) {
+        return "admin/user/create";
+    }
 }
 
 // @RestController
