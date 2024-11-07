@@ -35,35 +35,25 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">メール</th>
-                <th scope="col">フルネーム</th>
+                <th scope="col">氏名</th>
                 <th scope="col">アクション</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td class="d-flex">
-                  <button type="button" class="btn btn-success">見る</button>
-                  <button type="button" class="btn btn-warning mx-2">
-                    アップデート
-                  </button>
-                  <button type="button" class="btn btn-danger">削除</button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td class="d-flex">
-                  <button type="button" class="btn btn-success">見る</button>
-                  <button type="button" class="btn btn-warning mx-2">
-                    アップデート
-                  </button>
-                  <button type="button" class="btn btn-danger">削除</button>
-                </td>
-              </tr>
+              <c:forEach items="${users1}" var="user">
+                <tr>
+                  <th scope="row">${user.id}</th>
+                  <td>${user.email}</td>
+                  <td>${user.fullName}</td>
+                  <td class="d-flex">
+                    <button type="button" class="btn btn-success">見る</button>
+                    <button type="button" class="btn btn-warning mx-2">
+                      アップデート
+                    </button>
+                    <button type="button" class="btn btn-danger">削除</button>
+                  </td>
+                </tr>
+              </c:forEach>
             </tbody>
           </table>
         </div>

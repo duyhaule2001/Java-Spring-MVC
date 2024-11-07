@@ -23,7 +23,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
     <div class="container mt-5">
       <div class="row">
         <div class="col-md-6 col-12 mx-auto">
-          <h3>Create User</h3>
+          <h3>ユーザー登録</h3>
           <hr />
           <form:form
             method="post"
@@ -31,12 +31,12 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
             modelAttribute="newUser"
           >
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email:</label>
+              <label for="exampleInputEmail1" class="form-label">メール</label>
               <form:input path="email" type="email" class="form-control" />
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label"
-                >Password:</label
+                >パスワード:</label
               >
               <form:input
                 path="password"
@@ -47,25 +47,21 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
 
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label"
-                >Phone Number</label
+                >電話番号</label
               >
               <form:input path="phone" type="number" class="form-control" />
             </div>
 
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label"
-                >Full Name:</label
-              >
+              <label for="exampleInputEmail1" class="form-label">氏名:</label>
               <form:input path="fullName" type="text" class="form-control" />
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label"
-                >Address</label
-              >
+              <label for="exampleInputPassword1" class="form-label">住所</label>
               <form:input path="address" type="text" class="form-control" />
             </div>
 
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary">登録</button>
           </form:form>
         </div>
       </div>
