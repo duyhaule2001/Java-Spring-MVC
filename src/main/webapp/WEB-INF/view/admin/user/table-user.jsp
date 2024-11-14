@@ -6,7 +6,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>ユーザーリスト</title>
     <!-- Latest compiled and minified CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -46,11 +46,26 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                   <td>${user.email}</td>
                   <td>${user.fullName}</td>
                   <td class="d-flex">
-                    <button type="button" class="btn btn-success">見る</button>
-                    <button type="button" class="btn btn-warning mx-2">
-                      アップデート
-                    </button>
-                    <button type="button" class="btn btn-danger">削除</button>
+                    <a
+                      href="/admin/user/${user.id}"
+                      type="button"
+                      class="btn btn-success"
+                      >見る</a
+                    >
+
+                    <a
+                      href="/admin/user/update/${user.id}"
+                      type="button"
+                      class="btn btn-warning mx-2"
+                      >アップデート</a
+                    >
+
+                    <a
+                      href="/admin/user/delete/${user.id}"
+                      type="button"
+                      class="btn btn-danger mx-2"
+                      >削除</a
+                    >
                   </td>
                 </tr>
               </c:forEach>
