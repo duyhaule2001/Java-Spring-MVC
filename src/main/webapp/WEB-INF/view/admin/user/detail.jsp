@@ -12,7 +12,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>ユーザー削除</title>
+    <title>ユーザー情報</title>
 
     <link href="/css/styles.css" rel="stylesheet" />
     <link
@@ -45,26 +45,27 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
             </ol>
             <div class=" mt-5">
               <div class="row">
-                <div class="col-md-6 col-12 mx-auto">
-                  <h3>ユーザーID = ${id} 削除</h3>
-                  <hr />
-                  <div class="alert alert-danger" role="alert">
-                    ユーザーを削除してもよろしいいでしょうか？
+                <div class="col-12 mx-auto">
+                  <div class="d-flex justify-content-between">
+                    <h3>ユーザー情報</h3>
                   </div>
-                  <form:form
-                    method="post"
-                    action="/admin/user/delete"
-                    modelAttribute="newUser"
-                  >
-                    <div class="mb-3" style="display: none">
-                      <label for="exampleInputPassword1" class="form-label">ID:</label>
-                      <form:input value="${id}" path="id" class="form-control" />
-                    </div>
-                    <button type="submit" class="btn btn-danger">Ok</button>
-                  </form:form>
+                  <hr />
+        
+                  <div class="card" style="width: 60%">
+                    <div class="card-header">詳細情報</div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">ID： ${userInfor.id}</li>
+                      <li class="list-group-item">
+                        メールアドレス：${userInfor.email}
+                      </li>
+                      <li class="list-group-item">氏名：${userInfor.fullName}</li>
+                      <li class="list-group-item">住所：${userInfor.address}</li>
+                    </ul>
+                  </div>
+                  <a href="/admin/user" class="btn btn-success mt-3">戻る</a>
                 </div>
               </div>
-            </div>
+          </div>
         </main>
         <jsp:include page="../layout/footer.jsp" />
       </div>
