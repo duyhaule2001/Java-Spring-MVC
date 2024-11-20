@@ -59,6 +59,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                         <th scope="col">ID</th>
                         <th scope="col">メール</th>
                         <th scope="col">氏名</th>
+                        <th scope="col">権限</th>
                         <th scope="col">アクション</th>
                       </tr>
                     </thead>
@@ -68,6 +69,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                           <th scope="row">${user.id}</th>
                           <td>${user.email}</td>
                           <td>${user.fullName}</td>
+                          <td>${user.role.name}</td>
                           <td class="d-flex">
                             <a
                               href="/admin/user/${user.id}"
