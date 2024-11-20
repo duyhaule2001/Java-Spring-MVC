@@ -31,9 +31,5 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         </a>
       </div>
     </div>
-    <div class="sb-sidenav-footer">
-      <div class="small">Logged in as:</div>
-      LE DUY HAU
-    </div>
   </nav>
 </div>

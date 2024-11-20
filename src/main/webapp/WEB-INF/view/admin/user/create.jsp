@@ -29,6 +29,17 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
       src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(() => {
+        const avatarFile = $("#avatarFile");
+        avatarFile.change(function (e) {
+          const imgURL = URL.createObjectURL(e.target.files[0]);
+          $("#avatarPreview").attr("src", imgURL);
+          $("#avatarPreview").css({ display: "block" });
+        });
+      });
+    </script>
   </head>
   <body class="sb-nav-fixed">
     <div id="layoutSidenav">
@@ -36,7 +47,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
       <jsp:include page="../layout/sidebar.jsp" />
       <div id="layoutSidenav_content">
         <main>
-          <div class="container-fluid px-4 vh-100">
+          <div class="container-fluid px-4 pb-5">
             <h1 class="mt-4">製品管理</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item active">
@@ -52,6 +63,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                     method="post"
                     action="/admin/user/create"
                     modelAttribute="newUser"
+                    enctype="multipart/form-data"
                     class="row g-3"
                   >
                     <div class="mb-3 col-6 col-md-6">
@@ -108,24 +120,34 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                     </div>
 
                     <div class="mb-3 col-6 col-md-6">
-                      <label  class="form-label">役割</label>
-                      <select
-                        class="form-select"
-                      >
-                        <option value="ADMIN">管理</option>
-                        <option value="USER">ユーザー</option>
-                      </select>
+                      <label class="form-label">役割</label>
+                      <form:select class="form-select" path="role.name">
+                        <form:option value="ADMIN">管理</form:option>
+                        <form:option value="USER">ユーザー</form:option>
+                      </form:select>
                     </div>
 
                     <div class="mb-3 col-12 col-md-6">
                       <label for="avatarFile" class="form-label">Avatar</label>
-                      <input class="form-control" type="file" id="avatarFile" accept=".png, .jpg, .jpeg">
+                      <input
+                        class="form-control"
+                        type="file"
+                        id="avatarFile"
+                        name="leduyhauFile"
+                        accept=".png, .jpg, .jpeg"
+                      />
                     </div>
-                    <div class="mb-3 col-12 ">
-                     <img style="max-height: 250px; display: none;" alt="avatar preview" id="avatarPreview"/>
+                    <div class="mb-3 col-12">
+                      <img
+                        style="max-height: 250px; display: none"
+                        alt="avatar preview"
+                        id="avatarPreview"
+                      />
                     </div>
 
-                    <button type="submit" class="btn btn-primary col-md-2">登録</button>
+                    <button type="submit" class="btn btn-primary col-md-2">
+                      登録
+                    </button>
                   </form:form>
                 </div>
               </div>
