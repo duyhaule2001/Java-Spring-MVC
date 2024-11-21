@@ -43,6 +43,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                 <a href="/admin">ダッシュボード</a> / ユーザー
               </li>
             </ol>
+
             <div class="mt-5">
               <div class="row">
                 <div class="col-12 mx-auto">
@@ -60,7 +61,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                         <th scope="col">メール</th>
                         <th scope="col">氏名</th>
                         <th scope="col">権限</th>
-                        <th scope="col">アクション</th>
+                        <th scope="col"></th>
                       </tr>
                     </thead>
                     <tbody>

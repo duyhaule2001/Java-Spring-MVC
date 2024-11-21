@@ -33,7 +33,63 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                 <a href="/admin">ダッシュボード</a> / 製品
               </li>
             </ol>
-            <div>table product</div>
+
+            <div class="mt-5">
+              <div class="row">
+                <div class="col-12 mx-auto">
+                  <div class="d-flex justify-content-between">
+                    <h3>商品リスト</h3>
+                    <a href="/admin/product/create" class="btn btn-primary"
+                      >商品登録</a
+                    >
+                  </div>
+                  <hr />
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">商品名</th>
+                        <th scope="col">金額</th>
+                        <th scope="col">ブランド</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <c:forEach items="${users1}" var="user">
+                        <tr>
+                          <!-- <th scope="row">${user.id}</th>
+                          <td>${user.email}</td>
+                          <td>${user.fullName}</td>
+                          <td>${user.role.name}</td> -->
+                          <td class="d-flex">
+                            <a
+                              href="/admin/user/${user.id}"
+                              type="button"
+                              class="btn btn-success"
+                              >見る</a
+                            >
+
+                            <a
+                              href="/admin/user/update/${user.id}"
+                              type="button"
+                              class="btn btn-warning mx-2"
+                              >アップデート</a
+                            >
+
+                            <a
+                              href="/admin/user/delete/${user.id}"
+                              type="button"
+                              class="btn btn-danger mx-2"
+                              >削除</a
+                            >
+                          </td>
+                        </tr>
+                      </c:forEach>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </main>
         <jsp:include page="../layout/footer.jsp" />
