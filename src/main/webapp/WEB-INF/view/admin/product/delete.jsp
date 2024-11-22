@@ -12,7 +12,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>ユーザー修正</title>
+    <title>ユーザー登録</title>
 
     <link href="/css/styles.css" rel="stylesheet" />
     <link
@@ -29,6 +29,17 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
       src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(() => {
+        const avatarFile = $("#productFile");
+        avatarFile.change(function (e) {
+          const imgURL = URL.createObjectURL(e.target.files[0]);
+          $("#avatarPreview").attr("src", imgURL);
+          $("#avatarPreview").css({ display: "block" });
+        });
+      });
+    </script>
   </head>
   <body class="sb-nav-fixed">
     <div id="layoutSidenav">
@@ -36,58 +47,43 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
       <jsp:include page="../layout/sidebar.jsp" />
       <div id="layoutSidenav_content">
         <main>
-          <div class="container-fluid px-4 vh-100">
+          <div class="container-fluid px-4 pb-5">
             <h1 class="mt-4">製品管理</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item active">
-                <a href="/admin">ダッシュボード</a> / <a href="/admin/user">ユーザー</a> / アップデート
+                <a href="/admin">ダッシュボード</a> /
+                <a href="/admin/product">製品</a>　/ 削除
               </li>
             </ol>
-            <div class=" mt-5">
+            <div class="mt-5">
               <div class="row">
                 <div class="col-md-6 col-12 mx-auto">
-                  <h3>ユーザー情報修正</h3>
+                  <h3>製品ID = ${id} 削除</h3>
                   <hr />
+                  <div class="alert alert-danger" role="alert">
+                    製品を削除してもよろしいいでしょうか？
+                  </div>
                   <form:form
                     method="post"
-                    action="/admin/user/update"
-                    modelAttribute="newUser"
+                    action="/admin/product/delete"
+                    modelAttribute="newProduct"
                   >
-                    <div class="mb-3" hidden="true">
-                      <label for="exampleInputPassword1" class="form-label">ID:</label>
-                      <form:input path="id" class="form-control" />
-                    </div>
-                    <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">メール</label>
+                    <div class="mb-3" style="display: none">
+                      <label for="exampleInputPassword1" class="form-label"
+                        >ID:</label
+                      >
                       <form:input
-                        path="email"
-                        type="email"
+                        value="${id}"
+                        path="id"
                         class="form-control"
-                        disabled="true"
                       />
                     </div>
-        
-                    <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label"
-                        >電話番号</label
-                      >
-                      <form:input path="phone" type="number" class="form-control" />
-                    </div>
-        
-                    <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">氏名:</label>
-                      <form:input path="fullName" type="text" class="form-control" />
-                    </div>
-                    <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">住所</label>
-                      <form:input path="address" type="text" class="form-control" />
-                    </div>
-        
-                    <button type="submit" class="btn btn-warning">アップデート</button>
+                    <button type="submit" class="btn btn-danger">Ok</button>
                   </form:form>
                 </div>
               </div>
             </div>
+          </div>
         </main>
         <jsp:include page="../layout/footer.jsp" />
       </div>

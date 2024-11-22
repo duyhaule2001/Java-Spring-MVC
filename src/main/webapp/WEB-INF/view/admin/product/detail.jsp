@@ -12,7 +12,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>ユーザー削除</title>
+    <title>ユーザー登録</title>
 
     <link href="/css/styles.css" rel="stylesheet" />
     <link
@@ -29,6 +29,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
       src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
   <body class="sb-nav-fixed">
     <div id="layoutSidenav">
@@ -36,35 +37,54 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
       <jsp:include page="../layout/sidebar.jsp" />
       <div id="layoutSidenav_content">
         <main>
-          <div class="container-fluid px-4 vh-100">
+          <div class="container-fluid px-4 pb-5">
             <h1 class="mt-4">製品管理</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item active">
-                <a href="/admin">ダッシュボード</a> / <a href="/admin/user">ユーザー</a> / 削除
+                <a href="/admin">ダッシュボード</a> /
+                <a href="/admin/product">製品 </a>/ 詳細情報
               </li>
             </ol>
-            <div class=" mt-5">
+            <div class="mt-5">
               <div class="row">
-                <div class="col-md-6 col-12 mx-auto">
-                  <h3>ユーザーID = ${id} 削除</h3>
-                  <hr />
-                  <div class="alert alert-danger" role="alert">
-                    ユーザーを削除してもよろしいいでしょうか？
+                <div class="col-12 mx-auto">
+                  <div class="d-flex justify-content-between">
+                    <h3>製品情報</h3>
                   </div>
-                  <form:form
-                    method="post"
-                    action="/admin/user/delete"
-                    modelAttribute="newUser"
-                  >
-                    <div class="mb-3" style="display: none">
-                      <label for="exampleInputPassword1" class="form-label">ID:</label>
-                      <form:input value="${id}" path="id" class="form-control" />
-                    </div>
-                    <button type="submit" class="btn btn-danger">Ok</button>
-                  </form:form>
+                  <hr />
+
+                  <div class="card" style="width: 60%">
+                    <div class="card-header">詳細情報</div>
+                    <ul class="list-group list-group-flush">
+                      <c:if test="${not empty productInfo.image}">
+                        <li class="list-group-item">
+                          <img
+                            id="currentImage"
+                            src="/images/product/${productInfo.image}"
+                            alt="写真"
+                            style="
+                              max-width: 300px;
+                              max-height: 300px;
+                              display: block;
+                            "
+                          />
+                        </li>
+                      </c:if>
+                      <li class="list-group-item">ID： ${productInfo.id}</li>
+
+                      <li class="list-group-item">
+                        製品名：${productInfo.name}
+                      </li>
+                      <li class="list-group-item">
+                        金額：${productInfo.price}
+                      </li>
+                    </ul>
+                  </div>
+                  <a href="/admin/product" class="btn btn-success mt-3">戻る</a>
                 </div>
               </div>
             </div>
+          </div>
         </main>
         <jsp:include page="../layout/footer.jsp" />
       </div>

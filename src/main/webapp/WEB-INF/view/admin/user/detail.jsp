@@ -40,7 +40,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
             <h1 class="mt-4">製品管理</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item active">
-                <a href="/admin">ダッシュボード</a> / ユーザー
+                <a href="/admin">ダッシュボード</a> / <a href="/admin/user">ユーザー</a> / 詳細情報
               </li>
             </ol>
             <div class=" mt-5">
@@ -67,6 +67,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
               </div>
           </div>
         </main>
+        
         <jsp:include page="../layout/footer.jsp" />
       </div>
     </div>
