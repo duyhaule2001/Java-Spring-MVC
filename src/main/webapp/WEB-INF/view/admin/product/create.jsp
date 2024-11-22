@@ -32,7 +32,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
       $(document).ready(() => {
-        const avatarFile = $("#avatarFile");
+        const avatarFile = $("#productFile");
         avatarFile.change(function (e) {
           const imgURL = URL.createObjectURL(e.target.files[0]);
           $("#avatarPreview").attr("src", imgURL);
@@ -57,51 +57,73 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
             <div class="mt-5">
               <div class="row">
                 <div class="col-md-6 col-12 mx-auto">
-                  <h3>ユーザー登録</h3>
+                  <h3>製品登録</h3>
                   <hr />
                   <form:form
                     method="post"
-                    action="/admin/user/create"
+                    action="/admin/product/create"
                     modelAttribute="newProduct"
                     enctype="multipart/form-data"
                     class="row g-3"
                   >
                     <div class="mb-3 col-6 col-md-6">
+                      <c:set var="errorName">
+                        <form:errors path="name" cssClass="invalid-feedback" />
+                      </c:set>
                       <label for="name" class="form-label">商品名</label>
                       <form:input
                         path="name"
                         type="text"
-                        class="form-control"
+                        class="form-control ${not empty errorName ? 'is-invalid' : ''}"
                       />
+                      ${errorName}
                     </div>
                     <div class="mb-3 col-6 col-md-6">
+                      <c:set var="errorPrice">
+                        <form:errors path="price" cssClass="invalid-feedback" />
+                      </c:set>
                       <label for="price" class="form-label">金額</label>
                       <form:input
                         path="price"
                         type="number"
-                        class="form-control"
+                        class="form-control ${not empty errorPrice ? 'is-invalid' : ''}"
                       />
+                      ${errorPrice}
                     </div>
                     <div class="mb-3 col-12 col-md-12">
+                      <c:set var="errorDetailDesc">
+                        <form:errors
+                          path="detailDesc"
+                          cssClass="invalid-feedback"
+                        />
+                      </c:set>
                       <label for="detailDesc" class="form-label"
                         >詳細情報</label
                       >
                       <form:input
                         path="detailDesc"
                         type="text"
-                        class="form-control"
+                        class="form-control ${not empty errorDetailDesc ? 'is-invalid' : ''}"
                       />
+                      ${errorDetailDesc}
                     </div>
 
                     <div class="mb-3 col-6 col-md-6">
+                      <c:set var="errorShortDesc">
+                        <form:errors
+                          path="shortDesc"
+                          cssClass="invalid-feedback"
+                        />
+                      </c:set>
                       <label for="shortDesc" class="form-label"
                         >簡単な説明</label
                       >
                       <form:input
                         path="shortDesc"
                         type="text"
-                        class="form-control"
+                        class="form-control ${not empty errorShortDesc ? 'is-invalid' : ''}"
                       />
+                      ${errorShortDesc}
                     </div>
 
                     <div class="mb-3 col-6 col-md-6">
@@ -138,8 +160,8 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                       <input
                         class="form-control"
                         type="file"
-                        id="avatarFile"
-                        name="leduyhauFile"
+                        id="productFile"
+                        name="productFile"
                         accept=".png, .jpg, .jpeg"
                       />
                     </div>

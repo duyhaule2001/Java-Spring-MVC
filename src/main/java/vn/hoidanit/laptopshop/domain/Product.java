@@ -6,6 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "products")
@@ -14,15 +18,32 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull(message = "商品名は空にできません")
+    @Size(min = 2, message = "商品名は最低でも2文字必要です。")
     private String name;
+
+    @NotNull(message = "金額は空にできません")
+    @DecimalMin(value = "0", inclusive = false, message = "金額は0より大きい必要があります。")
     private double price;
+
     private String image;
+
+    @NotNull(message = "詳細情報は空にできません")
+    @Size(min = 2, message = "詳細情報は最低でも2文字必要です。")
     private String detailDesc;
+
+    @NotNull(message = "簡単な説明は空にできません")
+    @Size(min = 2, message = "簡単な説明は最低でも2文字必要です。")
     private String shortDesc;
+
+    @NotNull(message = "数量は空にできません")
+    @Positive(message = "数量は正の数でなければなりません")
     private long quantity;
+
     private long sold;
     private String factory;
     private String target;
+
 
     public long getId() {
         return id;

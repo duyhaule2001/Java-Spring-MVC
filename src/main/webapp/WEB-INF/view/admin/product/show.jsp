@@ -40,7 +40,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                   <div class="d-flex justify-content-between">
                     <h3>商品リスト</h3>
                     <a href="/admin/product/create" class="btn btn-primary"
-                      >商品登録</a
+                      >製品登録</a
                     >
                   </div>
                   <hr />
@@ -55,29 +55,29 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                       </tr>
                     </thead>
                     <tbody>
-                      <c:forEach items="${users1}" var="user">
+                      <c:forEach items="${products}" var="product">
                         <tr>
-                          <!-- <th scope="row">${user.id}</th>
-                          <td>${user.email}</td>
-                          <td>${user.fullName}</td>
-                          <td>${user.role.name}</td> -->
+                          <th scope="row">${product.id}</th>
+                          <td>${product.name}</td>
+                          <td>${product.price}</td>
+                          <td>${product.factory}</td>
                           <td class="d-flex">
                             <a
-                              href="/admin/user/${user.id}"
+                              href="/admin/product/${product.id}"
                               type="button"
                               class="btn btn-success"
                               >見る</a
                             >
 
                             <a
-                              href="/admin/user/update/${user.id}"
+                              href="/admin/product/update/${product.id}"
                               type="button"
                               class="btn btn-warning mx-2"
                               >アップデート</a
                             >
 
                             <a
-                              href="/admin/user/delete/${user.id}"
+                              href="/admin/product/delete/${product.id}"
                               type="button"
                               class="btn btn-danger mx-2"
                               >削除</a
