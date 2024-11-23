@@ -1,11 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%>
-
+uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib prefix="fmt"
+uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>${product.name} - LDH Shop</title>
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -60,7 +60,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                 <div class="border rounded">
                   <a href="#">
                     <img
-                      src="/client/img/single-item.jpg"
+                      src="/images/product/${product.image}"
                       class="img-fluid rounded"
                       alt="Image"
                     />
@@ -68,9 +68,11 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                 </div>
               </div>
               <div class="col-lg-6">
-                <h4 class="fw-bold mb-3">Brocoli</h4>
-                <p class="mb-3">Category: Vegetables</p>
-                <h5 class="fw-bold mb-3">3,35 $</h5>
+                <h4 class="fw-bold mb-3">${product.name}</h4>
+                <p class="mb-3">${product.factory}</p>
+                <h5 class="fw-bold mb-3">
+                  <fmt:formatNumber type="number" value="${product.price}" />đ
+                </h5>
                 <div class="d-flex mb-4">
                   <i class="fa fa-star text-secondary"></i>
                   <i class="fa fa-star text-secondary"></i>
@@ -78,15 +80,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                   <i class="fa fa-star text-secondary"></i>
                   <i class="fa fa-star"></i>
                 </div>
-                <p class="mb-4">
-                  The generated Lorem Ipsum is therefore always free from
-                  repetition injected humour, or non-characteristic words etc.
-                </p>
-                <p class="mb-4">
-                  Susp endisse ultricies nisi vel quam suscipit. Sabertooth
-                  peacock flounder; chain pickerel hatchetfish, pencilfish
-                  snailfish
-                </p>
+                <p class="mb-4">${product.shortDesc}</p>
                 <div class="input-group quantity mb-5" style="width: 100px">
                   <div class="input-group-btn">
                     <button
@@ -111,8 +105,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                 <a
                   href="#"
                   class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"
-                  ><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                  cart</a
+                  ><i class="fa fa-shopping-bag me-2 text-primary"></i>
+                  カートに入れる</a
                 >
               </div>
               <div class="col-lg-12">
@@ -128,7 +122,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                       aria-controls="nav-about"
                       aria-selected="true"
                     >
-                      Description
+                      説明
                     </button>
                   </div>
                 </nav>
@@ -139,84 +133,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                     role="tabpanel"
                     aria-labelledby="nav-about-tab"
                   >
-                    <p>
-                      The generated Lorem Ipsum is therefore always free from
-                      repetition injected humour, or non-characteristic words
-                      etc. Susp endisse ultricies nisi vel quam suscipit
-                    </p>
-                    <p>
-                      Sabertooth peacock flounder; chain pickerel hatchetfish,
-                      pencilfish snailfish filefish Antarctic icefish goldeye
-                      aholehole trumpetfish pilot fish airbreathing catfish,
-                      electric ray sweeper.
-                    </p>
-                    <div class="px-2">
-                      <div class="row g-4">
-                        <div class="col-6">
-                          <div
-                            class="row bg-light align-items-center text-center justify-content-center py-2"
-                          >
-                            <div class="col-6">
-                              <p class="mb-0">Weight</p>
-                            </div>
-                            <div class="col-6">
-                              <p class="mb-0">1 kg</p>
-                            </div>
-                          </div>
-                          <div
-                            class="row text-center align-items-center justify-content-center py-2"
-                          >
-                            <div class="col-6">
-                              <p class="mb-0">Country of Origin</p>
-                            </div>
-                            <div class="col-6">
-                              <p class="mb-0">Agro Farm</p>
-                            </div>
-                          </div>
-                          <div
-                            class="row bg-light text-center align-items-center justify-content-center py-2"
-                          >
-                            <div class="col-6">
-                              <p class="mb-0">Quality</p>
-                            </div>
-                            <div class="col-6">
-                              <p class="mb-0">Organic</p>
-                            </div>
-                          </div>
-                          <div
-                            class="row text-center align-items-center justify-content-center py-2"
-                          >
-                            <div class="col-6">
-                              <p class="mb-0">Сheck</p>
-                            </div>
-                            <div class="col-6">
-                              <p class="mb-0">Healthy</p>
-                            </div>
-                          </div>
-                          <div
-                            class="row bg-light text-center align-items-center justify-content-center py-2"
-                          >
-                            <div class="col-6">
-                              <p class="mb-0">Min Weight</p>
-                            </div>
-                            <div class="col-6">
-                              <p class="mb-0">250 Kg</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="tab-pane" id="nav-vision" role="tabpanel">
-                    <p class="text-dark">
-                      Tempor erat elitr rebum at clita. Diam dolor diam ipsum et
-                      tempor sit. Aliqu diam amet diam et eos labore. 3
-                    </p>
-                    <p class="mb-0">
-                      Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam
-                      et eos labore. Clita erat ipsum et lorem et sit
-                    </p>
+                    <p>${product.detailDesc}</p>
+                    <p></p>
                   </div>
                 </div>
               </div>
