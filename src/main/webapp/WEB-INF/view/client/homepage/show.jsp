@@ -93,8 +93,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
     <jsp:include page="../layout/banner.jsp" />
 
-    <jsp:include page="../layout/feature.jsp" />
-
     <!-- Fruits Shop Start-->
     <div class="container-fluid fruite py-5">
       <div class="container py-5">
@@ -164,7 +162,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                                   type="number"
                                   value="${product.price}"
                                 />
-                                đ
+                                ￥
                               </p>
                               <a
                                 href="#"
@@ -188,6 +186,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       </div>
     </div>
     <!-- Fruits Shop End-->
+
+    <jsp:include page="../layout/feature.jsp" />
 
     <jsp:include page="../layout/footer.jsp" />
 

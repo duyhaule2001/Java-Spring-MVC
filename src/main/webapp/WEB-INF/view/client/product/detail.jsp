@@ -10,10 +10,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap"
-      rel="stylesheet"
-    />
 
     <!-- Icon Font Stylesheet -->
     <link
@@ -54,6 +50,16 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     <div class="container-fluid py-5 mt-5">
       <div class="container py-5">
         <div class="row g-4 mb-5">
+          <div>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">ホーム</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  製品詳細
+                </li>
+              </ol>
+            </nav>
+          </div>
           <div class="col-lg-8 col-xl-9">
             <div class="row g-4">
               <div class="col-lg-6">
@@ -71,7 +77,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                 <h4 class="fw-bold mb-3">${product.name}</h4>
                 <p class="mb-3">${product.factory}</p>
                 <h5 class="fw-bold mb-3">
-                  <fmt:formatNumber type="number" value="${product.price}" />đ
+                  <fmt:formatNumber type="number" value="${product.price}" />￥
                 </h5>
                 <div class="d-flex mb-4">
                   <i class="fa fa-star text-secondary"></i>
@@ -149,7 +155,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                     <li>
                       <div class="d-flex justify-content-between fruite-name">
                         <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Apples</a
+                          ><i class="fas fa-apple-alt me-2"></i>Apple</a
                         >
                         <span>(3)</span>
                       </div>
@@ -157,7 +163,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                     <li>
                       <div class="d-flex justify-content-between fruite-name">
                         <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Oranges</a
+                          ><i class="fas fa-apple-alt me-2"></i>Dell</a
                         >
                         <span>(5)</span>
                       </div>
@@ -165,7 +171,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                     <li>
                       <div class="d-flex justify-content-between fruite-name">
                         <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Strawbery</a
+                          ><i class="fas fa-apple-alt me-2"></i>Asus</a
                         >
                         <span>(2)</span>
                       </div>
@@ -173,17 +179,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                     <li>
                       <div class="d-flex justify-content-between fruite-name">
                         <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Banana</a
+                          ><i class="fas fa-apple-alt me-2"></i>Lenovo</a
                         >
                         <span>(8)</span>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="d-flex justify-content-between fruite-name">
-                        <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Pumpkin</a
-                        >
-                        <span>(5)</span>
                       </div>
                     </li>
                   </ul>
