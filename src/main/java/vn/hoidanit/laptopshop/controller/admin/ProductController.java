@@ -37,7 +37,7 @@ public class ProductController {
 
 
     //リスト表示
-    @RequestMapping("/admin/product")
+    @GetMapping("/admin/product")
     public String getListProduct(Model model) {
         List<Product> products = this.productService.getAllProducts();
         model.addAttribute("products", products);
@@ -64,11 +64,9 @@ public class ProductController {
             return "/admin/product/create";
         }
 
-
         String productImage = this.uploadService.handleSaveUploadFile(file, "product");
         product.setImage(productImage);
         this.productService.handleSaveProduct(product);
-
         return "redirect:/admin/product";
     }
 

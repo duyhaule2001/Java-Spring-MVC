@@ -1,5 +1,6 @@
 package vn.hoidanit.laptopshop.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,7 +31,9 @@ public class Product {
 
     @NotNull(message = "詳細情報は空にできません")
     @Size(min = 2, message = "詳細情報は最低でも2文字必要です。")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String detailDesc;
+
 
     @NotNull(message = "簡単な説明は空にできません")
     @Size(min = 2, message = "簡単な説明は最低でも2文字必要です。")
