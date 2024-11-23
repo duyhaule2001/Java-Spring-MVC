@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+<%@page contentType="text/html" pageEncoding="UTF-8"%> <%@taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core"%> <%@taglib
 uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
@@ -33,13 +33,18 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                     </h3>
                   </div>
                   <div class="card-body">
-                    <form:form method="post" action="/register>">
+                    <form:form
+                      method="post"
+                      action="/register"
+                      modelAttribute="registerUser"
+                    >
                       <div class="row mb-3">
                         <div class="col-md-6">
                           <div class="form-floating mb-3 mb-md-0">
-                            <input
+                            <form:input
                               class="form-control"
                               id="inputFirstName"
+                              path="firstName"
                               type="text"
                               placeholder="Enter your first name"
                             />
@@ -48,9 +53,10 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                         </div>
                         <div class="col-md-6">
                           <div class="form-floating">
-                            <input
+                            <form:input
                               class="form-control"
                               id="inputLastName"
+                              path="lastName"
                               type="text"
                               placeholder="Enter your last name"
                             />
@@ -59,9 +65,10 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                         </div>
                       </div>
                       <div class="form-floating mb-3">
-                        <input
+                        <form:input
                           class="form-control"
                           id="inputEmail"
+                          path="email"
                           type="email"
                           placeholder="name@example.com"
                         />
@@ -70,9 +77,10 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                       <div class="row mb-3">
                         <div class="col-md-6">
                           <div class="form-floating mb-3 mb-md-0">
-                            <input
+                            <form:input
                               class="form-control"
                               id="inputPassword"
+                              path="password"
                               type="password"
                               placeholder="Create a password"
                             />
@@ -81,9 +89,10 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                         </div>
                         <div class="col-md-6">
                           <div class="form-floating mb-3 mb-md-0">
-                            <input
+                            <form:input
                               class="form-control"
                               id="inputPasswordConfirm"
+                              path="confirmPassword"
                               type="password"
                               placeholder="Confirm password"
                             />
@@ -95,9 +104,12 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                       </div>
                       <div class="mt-4 mb-0">
                         <div class="d-grid">
-                          <a class="btn btn-primary btn-block" href="login.html"
-                            >Create Account</a
+                          <button
+                            class="btn btn-primary btn-block"
+                            type="submit"
                           >
+                            Create Account
+                          </button>
                         </div>
                       </div>
                     </form:form>
