@@ -12,7 +12,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Register - LDH Shop</title>
+    <title>新規登録 - LDH Shop</title>
     <link href="css/styles.css" rel="stylesheet" />
     <script
       src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
@@ -29,7 +29,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                   <div class="card-header">
                     <h3 class="text-center font-weight-light my-4">
-                      Create Account
+                      アカウント登録
                     </h3>
                   </div>
                   <div class="card-body">
@@ -47,17 +47,24 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                       <c:set var="errorEmail">
                         <form:errors path="email" cssClass="invalid-feedback" />
                       </c:set>
+                      <c:set var="errorFirstName">
+                        <form:errors
+                          path="firstName"
+                          cssClass="invalid-feedback"
+                        />
+                      </c:set>
                       <div class="row mb-3">
                         <div class="col-md-6">
                           <div class="form-floating mb-3 mb-md-0">
                             <form:input
-                              class="form-control"
+                              class="form-control ${not empty errorFirstName ? 'is-invalid' : ''}"
                               id="inputFirstName"
                               path="firstName"
                               type="text"
                               placeholder="Enter your first name"
                             />
-                            <label for="inputFirstName">First name</label>
+                            <label for="inputFirstName">姓</label>
+                            ${errorFirstName}
                           </div>
                         </div>
                         <div class="col-md-6">
@@ -69,7 +76,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                               type="text"
                               placeholder="Enter your last name"
                             />
-                            <label for="inputLastName">Last name</label>
+                            <label for="inputLastName">名</label>
                           </div>
                         </div>
                       </div>
@@ -81,7 +88,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                           type="email"
                           placeholder="name@example.com"
                         />
-                        <label for="inputEmail">Email address</label>
+                        <label for="inputEmail">メールアドレス</label>
                         ${errorEmail}
                       </div>
                       <div class="row mb-3">
@@ -94,7 +101,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                               type="password"
                               placeholder="Create a password"
                             />
-                            <label for="inputPassword">Password</label>
+                            <label for="inputPassword">パスワード</label>
                             ${errorPassword}
                           </div>
                         </div>
@@ -108,7 +115,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                               placeholder="Confirm password"
                             />
                             <label for="inputPasswordConfirm"
-                              >Confirm Password</label
+                              >パスワード（確認）</label
                             >
                           </div>
                         </div>
@@ -119,7 +126,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                             class="btn btn-primary btn-block"
                             type="submit"
                           >
-                            Create Account
+                            登録
                           </button>
                         </div>
                       </div>
@@ -127,7 +134,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                   </div>
                   <div class="card-footer text-center py-3">
                     <div class="small">
-                      <a href="login.html">Have an account? Go to login</a>
+                      <a href="login.html">アカウントをお持ちの方</a>
                     </div>
                   </div>
                 </div>
