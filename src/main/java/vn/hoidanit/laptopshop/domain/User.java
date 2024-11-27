@@ -27,8 +27,9 @@ public class User {
 
     @NotNull
     @Size(min = 2, message = "パスワードは最低でも２文字必要です。")
-    @StrongPassword(message = "パスワードは最低でも８文字必要です。")
     private String password;
+    // @StrongPassword(message = "パスワードは最低でも８文字必要です。")
+
 
     @NotNull
     @Size(min = 3, message = "フルネームは最低でも３文字必要です。")
