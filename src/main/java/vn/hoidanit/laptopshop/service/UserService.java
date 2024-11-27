@@ -58,4 +58,9 @@ public class UserService {
         return user;
     }
 
+    //check email có tồn tại hay không 
+    public boolean checkEmailExist(String email){
+        return this.userRepository.existsByEmail(email);
+    }
+
 }
