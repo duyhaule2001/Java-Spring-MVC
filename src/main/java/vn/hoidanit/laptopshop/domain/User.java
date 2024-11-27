@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import vn.hoidanit.laptopshop.service.validator.StrongPassword;
 @Entity
 @Table(name = "users")
 public class User {
@@ -26,6 +27,7 @@ public class User {
 
     @NotNull
     @Size(min = 2, message = "パスワードは最低でも２文字必要です。")
+    @StrongPassword(message = "パスワードは最低でも８文字必要です。")
     private String password;
 
     @NotNull
