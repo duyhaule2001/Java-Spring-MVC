@@ -57,6 +57,11 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                           メールアドレスまたはパスワードが間違っています。
                         </div>
                       </c:if>
+                      <c:if test="${param.logout != null}">
+                        <div class="my-2" style="color: green">
+                          ログアウトが成功しました。
+                        </div>
+                      </c:if>
                       <div>
                         <input
                           type="hidden"
