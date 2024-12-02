@@ -15,81 +15,87 @@ import vn.hoidanit.laptopshop.repository.ProductRepository;
 
 @Service
 public class ProductService {
-        private final ProductRepository productRepository;
-        private final CartRepository cartRepository;
-        private final CartDetailRepository cartDetailRepository;
-        private final UserService userService;
-
+    private final ProductRepository productRepository;
+    private final CartRepository cartRepository;
+    private final CartDetailRepository cartDetailRepository;
+    private final UserService userService;
 
     public ProductService(ProductRepository productRepository, CartRepository cartRepository,
-                CartDetailRepository cartDetailRepository,UserService userService) {
-            this.productRepository = productRepository;
-            this.cartRepository = cartRepository;
-            this.cartDetailRepository = cartDetailRepository;
-            this.userService = userService;
-        }
+                          CartDetailRepository cartDetailRepository, UserService userService) {
+        this.productRepository = productRepository;
+        this.cartRepository = cartRepository;
+        this.cartDetailRepository = cartDetailRepository;
+        this.userService = userService;
+    }
 
-
+    // Lấy tất cả sản phẩm
     public List<Product> getAllProducts() {
         return this.productRepository.findAll();
     }
 
+    // Lưu sản phẩm
     public Product handleSaveProduct(Product product) {
         return this.productRepository.save(product);    
     }
 
+    // Xóa sản phẩm
     public Product deleteProduct(long id) {
         this.productRepository.deleteById(id);   
         return null;
     }
 
+    // Lấy sản phẩm theo ID
     public Product getProductById(long id) {
-    return this.productRepository.findById(id);
+        return this.productRepository.findById(id);
     }
 
-    public void handleAddProductToCart(String email, long productId,HttpSession session){
-    //check user đã có cart chưa? nếu chưa -> tạo mới
-    User user = this.userService.getUserByEmail(email);
-    if( user != null){
-        Cart cart = this.cartRepository.findByUser(user);
+    // Thêm sản phẩm vào giỏ hàng
+    public void handleAddProductToCart(String email, long productId, HttpSession session) {
+        // Kiểm tra người dùng
+        User user = this.userService.getUserByEmail(email);
+        if (user != null) {
+            // Kiểm tra nếu người dùng đã có giỏ hàng
+            Cart cart = this.cartRepository.findByUser(user);
 
-        if(cart == null){
-            //tạo mới cart
-            Cart otherCart = new Cart();
-            otherCart.setUser(user);
-            otherCart.setSum(0);
-            cart = this.cartRepository.save(otherCart);
-           
+            if (cart == null) {
+                // Nếu chưa có giỏ hàng, tạo mới
+                Cart newCart = new Cart();
+                newCart.setUser(user);
+                newCart.setSum(0);
+                cart = this.cartRepository.save(newCart);
+            }
+
+            // Lấy thông tin sản phẩm
+            Product product = this.productRepository.findById(productId);
+
+            // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+            CartDetail oldDetail = this.cartDetailRepository.findByCartAndProduct(cart, product);
+
+            if (oldDetail == null) {
+                // Nếu sản phẩm chưa có trong giỏ, thêm mới
+                CartDetail newDetail = new CartDetail();
+                newDetail.setCart(cart);
+                newDetail.setProduct(product);
+                newDetail.setPrice(product.getPrice());
+                newDetail.setQuantity(1);
+                this.cartDetailRepository.save(newDetail);
+
+                // Cập nhật tổng số lượng sản phẩm trong giỏ
+                int sum = cart.getSum() + 1;
+                cart.setSum(sum);
+                this.cartRepository.save(cart);
+                session.setAttribute("sum", sum);
+            } else {
+                // Nếu sản phẩm đã có, tăng số lượng
+                oldDetail.setQuantity(oldDetail.getQuantity() + 1);
+                this.cartDetailRepository.save(oldDetail);
+            }
         }
+    }
 
-        //save cart_detail
-        //tìm product by id
-
-
-        Product product = this.productRepository.findById(productId);
-
-        CartDetail oldDetail = this.cartDetailRepository.findByCartAndProduct(cart, product);
-
-        if(oldDetail == null){
-            CartDetail cd = new CartDetail();
-            cd.setCart(cart);
-            cd.setProduct(product);
-            cd.setPrice(product.getPrice());
-            cd.setQuantity(1);
-            this.cartDetailRepository.save(cd);
-
-            //update sum
-            int s = cart.getSum() + 1;
-            cart.setSum(s);
-            this.cartRepository.save(cart);
-            session.setAttribute("sum", s);
-        }else{
-            oldDetail.setQuantity(oldDetail.getQuantity() + 1);
-            this.cartDetailRepository.save(oldDetail);
-        }
-
-       
-  
+    public Cart fetchByUser(User user){
+        return this.cartRepository.findByUser(user);
     }
 }
-}
+
+
