@@ -1,15 +1,24 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib prefix="fmt"
-uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="fmt"
+uri="http://java.sun.com/jsp/jstl/fmt" %> <%@ taglib prefix="form"
+uri="http://www.springframework.org/tags/form" %>
+
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>${product.name} - LDH Shop</title>
+    <meta charset="utf-8" />
+    <title>${product.name} - Laptopshop</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Icon Font Stylesheet -->
     <link
@@ -34,6 +43,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     <!-- Template Stylesheet -->
     <link href="/client/css/style.css" rel="stylesheet" />
   </head>
+
   <body>
     <!-- Spinner Start -->
     <div
@@ -53,9 +63,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
           <div>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">ホーム</a></li>
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                  製品詳細
+                  Chi Tiết Sản Phẩm
                 </li>
               </ol>
             </nav>
@@ -77,7 +87,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                 <h4 class="fw-bold mb-3">${product.name}</h4>
                 <p class="mb-3">${product.factory}</p>
                 <h5 class="fw-bold mb-3">
-                  <fmt:formatNumber type="number" value="${product.price}" />￥
+                  <fmt:formatNumber type="number" value="${product.price}" /> đ
                 </h5>
                 <div class="d-flex mb-4">
                   <i class="fa fa-star text-secondary"></i>
@@ -87,6 +97,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                   <i class="fa fa-star"></i>
                 </div>
                 <p class="mb-4">${product.shortDesc}</p>
+
                 <div class="input-group quantity mb-5" style="width: 100px">
                   <div class="input-group-btn">
                     <button
@@ -99,6 +110,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                     type="text"
                     class="form-control form-control-sm text-center border-0"
                     value="1"
+                    data-cart-detail-index="0"
                   />
                   <div class="input-group-btn">
                     <button
@@ -108,12 +120,36 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                     </button>
                   </div>
                 </div>
-                <a
-                  href="#"
-                  class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"
-                  ><i class="fa fa-shopping-bag me-2 text-primary"></i>
-                  カートに入れる</a
+                <form
+                  action="/add-product-from-view-detail"
+                  method="post"
+                  modelAttribute="product"
                 >
+                  <input
+                    type="hidden"
+                    name="${_csrf.parameterName}"
+                    value="${_csrf.token}"
+                  />
+                  <input
+                    class="form-control d-none"
+                    type="text"
+                    value="${product.id}"
+                    name="id"
+                  />
+
+                  <input
+                    class="form-control d-none"
+                    type="text"
+                    name="quantity"
+                    id="cartDetails0.quantity"
+                  />
+                  <button
+                    class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"
+                  >
+                    <i class="fa fa-shopping-bag me-2 text-primary"></i>
+                    Add to cart
+                  </button>
+                </form>
               </div>
               <div class="col-lg-12">
                 <nav>
@@ -128,7 +164,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                       aria-controls="nav-about"
                       aria-selected="true"
                     >
-                      説明
+                      Description
                     </button>
                   </div>
                 </nav>
@@ -140,7 +176,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                     aria-labelledby="nav-about-tab"
                   >
                     <p>${product.detailDesc}</p>
-                    <p></p>
                   </div>
                 </div>
               </div>
@@ -155,7 +190,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                     <li>
                       <div class="d-flex justify-content-between fruite-name">
                         <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Apple</a
+                          ><i class="fas fa-apple-alt me-2"></i>Apples</a
                         >
                         <span>(3)</span>
                       </div>
@@ -179,9 +214,17 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                     <li>
                       <div class="d-flex justify-content-between fruite-name">
                         <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Lenovo</a
+                          ><i class="fas fa-apple-alt me-2"></i>Acer</a
                         >
                         <span>(8)</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="d-flex justify-content-between fruite-name">
+                        <a href="#"
+                          ><i class="fas fa-apple-alt me-2"></i>Lenovo</a
+                        >
+                        <span>(5)</span>
                       </div>
                     </li>
                   </ul>
@@ -194,7 +237,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     </div>
     <!-- Single Product End -->
 
-    <!-- Footer-->
     <jsp:include page="../layout/footer.jsp" />
 
     <!-- Back to Top -->

@@ -10,7 +10,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import vn.hoidanit.laptopshop.domain.Order;
+import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.service.OrderService;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 public class OrderController {
@@ -62,4 +68,19 @@ public class OrderController {
         this.orderService.updateOrder(order);
         return "redirect:/admin/order";
     }
+
+    //history page
+    @GetMapping("/order-history")
+    public String getMethodName(Model model, HttpServletRequest request) {
+        User currentUser = new User();
+        HttpSession session = request.getSession(false);
+        long id = (long) session.getAttribute("id");
+        currentUser.setId(id);
+
+        List<Order> orders = this.orderService.fetchOrderByUser(currentUser);
+        model.addAttribute("orders", orders);
+        System.out.println("check order" + orders);
+        return "client/cart/order-history";
+    }
+    
 }

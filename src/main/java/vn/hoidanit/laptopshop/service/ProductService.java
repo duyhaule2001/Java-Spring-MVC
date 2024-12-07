@@ -61,7 +61,7 @@ public class ProductService {
     }
 
     // Thêm sản phẩm vào giỏ hàng
-    public void handleAddProductToCart(String email, long productId, HttpSession session) {
+    public void handleAddProductToCart(String email, long productId, HttpSession session, long quantity) {
         // Kiểm tra người dùng
         User user = this.userService.getUserByEmail(email);
         if (user != null) {
@@ -88,7 +88,7 @@ public class ProductService {
                 newDetail.setCart(cart);
                 newDetail.setProduct(product);
                 newDetail.setPrice(product.getPrice());
-                newDetail.setQuantity(1);
+                newDetail.setQuantity(quantity);
                 this.cartDetailRepository.save(newDetail);
 
                 // Cập nhật tổng số lượng sản phẩm trong giỏ
@@ -98,7 +98,7 @@ public class ProductService {
                 session.setAttribute("sum", sum);
             } else {
                 // Nếu sản phẩm đã có, tăng số lượng
-                oldDetail.setQuantity(oldDetail.getQuantity() + 1);
+                oldDetail.setQuantity(oldDetail.getQuantity() + quantity);
                 this.cartDetailRepository.save(oldDetail);
             }
         }

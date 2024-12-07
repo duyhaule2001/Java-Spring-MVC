@@ -45,7 +45,7 @@
 
                                         <li><a class="dropdown-item" href="#">アカウント</a></li>
 
-                                        <li><a class="dropdown-item" href="#">注文履歴</a></li>
+                                        <li><a class="dropdown-item" href="/order-history">注文履歴</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
