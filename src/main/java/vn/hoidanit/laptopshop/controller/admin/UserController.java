@@ -37,7 +37,6 @@ public class UserController {
     @RequestMapping("/")
     public String getHomePage(Model model) {
         List<User> arrUsers = this.userService.getAllUserByEmail("duyhaule2001@gmail.com");
-        System.out.println(arrUsers);
 
         model.addAttribute("hau", "test");
         model.addAttribute("leduyhau", "form controller");
