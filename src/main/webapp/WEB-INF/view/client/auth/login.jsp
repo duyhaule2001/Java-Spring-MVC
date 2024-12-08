@@ -80,7 +80,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                   </div>
                   <div class="card-footer text-center py-3">
                     <div class="small">
-                      <a href="register.html">新規登録</a>
+                      <a href="/register">新規登録</a>
                     </div>
                   </div>
                 </div>
