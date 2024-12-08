@@ -44,6 +44,9 @@ public class ProductController {
         Page<Product> products = this.productService.getAllProducts(pageable);
         List<Product> listProducts = products.getContent();
         model.addAttribute("products", listProducts);
+
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", products.getTotalPages());
         return "admin/product/show";
     }
 
