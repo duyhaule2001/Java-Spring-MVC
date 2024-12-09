@@ -67,8 +67,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                 <li class="nav-item">
                   <a
                     class="d-flex m-2 py-2 bg-light rounded-pill active"
-                    data-bs-toggle="pill"
-                    href="#tab-1"
+                    href="/products"
                   >
                     <span class="text-dark" style="width: 130px"
                       >すべての商品</span
@@ -109,7 +108,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
                             </h4>
                             <p style="font-size: 13px">${product.shortDesc}</p>
                             <div
-                              class="d-flex justify-content-center flex-lg-wrap"
+                              class="d-flex flex-lg-wrap justify-content-center flex-column"
                             >
                               <p
                                 style="

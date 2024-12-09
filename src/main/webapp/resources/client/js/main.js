@@ -125,6 +125,19 @@
     $("#videoModal").on("hide.bs.modal", function (e) {
       $("#video").attr("src", $videoSrc);
     });
+
+    //add active class to header
+    const navElement = $("#navbarCollapse");
+    const currentUrl = window.location.pathname;
+    navElement.find("a.nav-link").each(function () {
+      const link = $(this); // Get the current link in the loop
+      const href = link.attr("href"); // Get the href attribute of the link
+      if (href === currentUrl) {
+        link.addClass("active"); // Add 'active' class if the href matches the current URL
+      } else {
+        link.removeClass("active"); // Remove 'active' class if the href does not match
+      }
+    });
   });
 
   // Product Quantity
@@ -176,7 +189,7 @@
       priceElement.text(formatCurrency(newPrice.toFixed(2)) + " đ");
     }
 
-    //update total cart price
+    //update total cart price$("#video").attr('src', $videoSrc);
     const totalPriceElement = $(`p[data-cart-total-price]`);
 
     if (totalPriceElement && totalPriceElement.length) {
